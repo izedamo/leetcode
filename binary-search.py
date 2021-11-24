@@ -25,7 +25,8 @@ def binary_search(input_array, value):
     if value == current_elem:
         return current_index
     elif value > current_elem:
-        return current_index + binary_search(input_array[current_index+1:], value)
+        found_index = binary_search(input_array[current_index+1:], value)
+        return current_index + 1 + found_index if found_index > -1 else found_index
     return binary_search(input_array[:current_index], value)
 
 test_list = [1,3,9,11,15,19,29]
