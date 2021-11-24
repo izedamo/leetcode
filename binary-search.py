@@ -12,22 +12,21 @@ doesn't exist in the list."""
 
 def binary_search(input_array, value):
     """Quickly search if a value is present in an array. Returns the index of value, or -1 if the value is not present in the list."""
-    len_array = len(input_array)
-    if len_array == 0:
-        return -1
-    #if len_array == 1:
-    #    return 0 if value == input_array[0] else -1
-    array_mid, remainder = divmod(len_array, 2)
-    #array_mid = len_array // 2
-    current_index = array_mid if remainder == 1 else array_mid - 1
-    current_elem = input_array[current_index]
 
-    if value == current_elem:
-        return current_index
-    elif value > current_elem:
-        found_index = binary_search(input_array[current_index+1:], value)
-        return current_index + 1 + found_index if found_index > -1 else found_index
-    return binary_search(input_array[:current_index], value)
+    begin = 0
+    end = len(input_array) - 1
+
+    while begin <= end:
+        mid = (begin + end) // 2
+
+        if value == input_array[mid]:
+            return mid
+        elif value > input_array[mid]:
+            begin = mid + 1
+        else:
+            end = mid - 1
+
+    return -1
 
 test_list = [1,3,9,11,15,19,29]
 test_val1 = 25
